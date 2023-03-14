@@ -1,0 +1,158 @@
+==================================
+==============USER================
+==================================
+
+POST
+localhost:8080/users/save
+{
+    "firstName": "Lilly",
+    "lastName": "Moneva",
+    "email":"test3@gmail.com",
+    "password": "Ss1!aaaaa",
+    "phone": "0899044888"
+}
+---------------------------------
+
+GET
+localhost:8080/users/email/test3@gmail.com
+---------------------------------
+
+GET
+localhost:8080/users/1
+---------------------------------
+
+DELETE
+localhost:8080/users/5
+---------------------------------
+
+UPDATE
+localhost:8080/users/update
+{
+    "id": "3",
+    "firstName": "Boby",
+    "lastName": "Monev",
+    "email":"test3@gmail.com",
+    "password": "Ss1!aaaaa",
+    "phone": "0899044888"
+}
+---------------------------------
+
+UPDATE
+localhost:8080/users/psd
+{
+    "email":"test3@gmail.com",
+    "currentPassword": "Ss1!aaaaa"
+     "newPassword": "Ss2!aaaaa"
+}
+
+
+
+
+
+=================================
+==============CAR================
+=================================
+
+GET
+localhost:8080/cars/1
+---------------------------------
+
+POST
+localhost:8080/cars/save
+
+{
+    "id": "1",
+    "make": "Mercedes",
+    "model": "Benz",
+    "carPlate": "B1111HT",
+    "color": "white",
+    "seats": 4,
+    "pricePerDay": 100.0
+}
+
+---------------------------------
+
+UPDATE
+localhost:8080/cars/price
+
+{
+    "carPlate": "B1111HT",
+    "currentPricePerDay": "1000000000.0",
+    "newPricePerDay": "200.0"
+}
+---------------------------------
+
+DELETE
+localhost:8080/cars/2
+--------------------------------
+
+
+
+
+
+=================================
+==========RESERVATION============
+=================================
+
+
+POST
+localhost:8080/reservations/save
+--------------------------------
+{
+    "phone": "0899044806",
+    "carPlate": "B1111HT",
+    "pickUpDate": "20-06-2024,
+    "returnDate": "21-06-2024"
+}
+
+--------------------------------
+
+GET
+localhost:8080/reservations/1
+--------------------------------
+
+PUT
+localhost:8080/reservations/update/car
+--------------------------------
+
+{
+    "id": "1",
+    "phone": "0899044806",
+    "currentCarPlate": "B1111HT",
+    "newCarPlate": "B2222HT"
+}
+
+--------------------------------
+
+PUT
+localhost:8080/reservations/update/period
+--------------------------------
+
+{
+    "id": "1",
+    "currentPickUpDate": "01-06-2024",
+    "currentReturnDate": "05-06-2024",
+    "newPickUpDate": "20-06-2024",
+    "newReturnDate": "25-06-2024"
+}
+
+--------------------------------
+
+GET
+localhost:8080/reservations/period
+--------------------------------
+
+
+{
+    "startDate": "01-05-2030",
+    "endDate": "05-07-2030"
+}
+
+--------------------------------
+DELETE
+localhost:8080/reservations/1
+---------------------------------
+
+
+
+
