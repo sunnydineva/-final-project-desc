@@ -26,6 +26,8 @@ public class ApplicationExceptionHandler {
         } else if (ex.getErrorCode() == 23503) {
             // handle foreign key violation
             return "Record not found error: " + ex.getMessage();
+        } else if (ex.getErrorCode() == 31932) {
+            return "Duplicates for email not allowed" + ex.getMessage();
         } else if (ex.getErrorCode() == 1451) {
             //handle delete or update parent row
             return """
@@ -125,6 +127,9 @@ public class ApplicationExceptionHandler {
                 errorMessage = error.getDefaultMessage();
                 break;
             } else if (error.getField().equals("newPassword") && error.getCode().equals("NotBlank")) {
+                errorMessage = error.getDefaultMessage();
+                break;
+            } else if (error.getField().equals("newPasswordConfirm") && error.getCode().equals("NotBlank")) {
                 errorMessage = error.getDefaultMessage();
                 break;
             } else if (error.getField().equals("pickUpDate") && error.getCode().equals("NotBlank")) {

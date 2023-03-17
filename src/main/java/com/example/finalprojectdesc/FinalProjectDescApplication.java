@@ -14,7 +14,5 @@ public class FinalProjectDescApplication {
 	}
 	public static void main(String[] args) {
 		SpringApplication.run(FinalProjectDescApplication.class, args);
-
-
 	}
 }

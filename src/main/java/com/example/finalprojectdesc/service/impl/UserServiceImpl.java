@@ -5,11 +5,13 @@ import com.example.finalprojectdesc.dto.UserUpdatePasswordRequest;
 import com.example.finalprojectdesc.dto.UserRequest;
 import com.example.finalprojectdesc.dto.UserResponse;
 import com.example.finalprojectdesc.dto.UserUpdateRequest;
-import com.example.finalprojectdesc.entity.Car;
 import com.example.finalprojectdesc.entity.User;
 import com.example.finalprojectdesc.exception.RecordNotFoundException;
 import com.example.finalprojectdesc.repository.UserRepository;
 import com.example.finalprojectdesc.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -80,7 +82,9 @@ public class UserServiceImpl implements UserService {
     public String updatePassword(UserUpdatePasswordRequest userRequest) {
         User user = userRepository.findByEmail(userRequest.getEmail())
                 .orElseThrow(() -> new RecordNotFoundException(errMsgBadCredentials));
-        if (bCryptPasswordEncoder.matches(userRequest.getCurrentPassword(), user.getPassword())) {
+        if (bCryptPasswordEncoder.matches(userRequest.getCurrentPassword(), user.getPassword())
+        && userRequest.getNewPassword().equals(userRequest.getNewPasswordConfirm())
+        ) {
             user.setPassword(bCryptPasswordEncoder.encode(userRequest.getNewPassword()));
         } else {
             throw new RecordNotFoundException(errMsgBadCredentials);

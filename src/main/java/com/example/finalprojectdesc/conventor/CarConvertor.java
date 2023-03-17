@@ -30,5 +30,4 @@ public class CarConvertor {
                 .pricePerDay(car.getPricePerDay())
                 .build();
     }
-
 }

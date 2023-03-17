@@ -32,7 +32,7 @@ public class Car {
     @Size(min = 1, max = 15)
     private String model;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "car_plate")
     @Size(max = 30)
     private String carPlate;
 
@@ -43,7 +43,7 @@ public class Car {
     @Column(nullable = false)
     private Integer seats;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "price_per_day")
     private BigDecimal pricePerDay;
 
     @OneToMany(mappedBy = "car")
