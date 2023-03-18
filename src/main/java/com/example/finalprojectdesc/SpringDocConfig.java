@@ -6,12 +6,12 @@ import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.examples.Example;
+import io.swagger.v3.oas.models.responses.ApiResponse;
 import io.swagger.v3.oas.models.info.Info;
-import org.springframework.boot.web.server.Http2;
+import io.swagger.v3.oas.models.media.Content;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
-
 import java.io.IOException;
 
 @OpenAPIDefinition
@@ -22,25 +22,25 @@ public class SpringDocConfig {
 
     @Bean
     public OpenAPI customOpenAPI() throws IOException {
-        io.swagger.v3.oas.models.responses.ApiResponse badRequestAPI = new io.swagger.v3.oas.models.responses.ApiResponse()
-                .content(new io.swagger.v3.oas.models.media.Content().addMediaType(MediaType.APPLICATION_JSON_VALUE,
-                                new io.swagger.v3.oas.models.media.MediaType().addExamples("default",
-                                        new Example()
-                                                .value(readJsonFileToJsonObject.read().get("badRequestResponse").toString()))))
+        ApiResponse badRequestAPI = new ApiResponse()
+                .content(new Content().addMediaType(MediaType.APPLICATION_JSON_VALUE,
+                        new io.swagger.v3.oas.models.media.MediaType().addExamples("default",
+                                new Example()
+                                        .value(readJsonFileToJsonObject.read().get("badRequestResponse").toString()))))
                 .description("Bad Request");
-        io.swagger.v3.oas.models.responses.ApiResponse internalServerErrorResponseAPI = new io.swagger.v3.oas.models.responses.ApiResponse().content(
-                        new io.swagger.v3.oas.models.media.Content()
+       ApiResponse internalServerErrorResponseAPI = new ApiResponse().content(
+                        new Content()
                                 .addMediaType(MediaType.APPLICATION_JSON_VALUE,
                                         new io.swagger.v3.oas.models.media.MediaType().addExamples("default",
                                                 new Example()
                                                         .value(readJsonFileToJsonObject.read().get("internalServerErrorResponse").toString()))))
                 .description("Internal Server Error");
-        io.swagger.v3.oas.models.responses.ApiResponse notFoundResponseAPI = new io.swagger.v3.oas.models.responses.ApiResponse()
-                .content(new io.swagger.v3.oas.models.media.Content()
-                                .addMediaType(MediaType.APPLICATION_JSON_VALUE,
-                                        new io.swagger.v3.oas.models.media.MediaType().addExamples("default",
-                                                new Example()
-                                                        .value(readJsonFileToJsonObject.read().get("notFoundResponse").toString()))))
+       ApiResponse notFoundResponseAPI = new ApiResponse()
+                .content(new Content()
+                        .addMediaType(MediaType.APPLICATION_JSON_VALUE,
+                                new io.swagger.v3.oas.models.media.MediaType().addExamples("default",
+                                        new Example()
+                                                .value(readJsonFileToJsonObject.read().get("notFoundResponse").toString()))))
                 .description("Not Found");
         Components components = new Components();
         components.addResponses("badRequestAPI", badRequestAPI);

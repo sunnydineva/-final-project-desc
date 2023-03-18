@@ -39,7 +39,7 @@ public class UserController {
     @PostMapping(path = "/save")
     @Operation(summary = "Create a new user")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "500", ref = "internalServerErrorAPI"), //uses the global defined ApiResponses
+            @ApiResponse(responseCode = "500", ref = "internalServerErrorResponseAPI"), //uses the global defined ApiResponses
             @ApiResponse(responseCode = "201", description = "User created successfully",
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = UserResponse.class),
@@ -112,7 +112,7 @@ public class UserController {
     @PutMapping(path = "/psd")
     @Operation(summary = "Update user password", description = "Update user password with the given email, current password and new password")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "500", ref = "internalServerErrorAPI"),
+            @ApiResponse(responseCode = "500", ref = "internalServerErrorResponseAPI"),
             @ApiResponse(responseCode = "200", description = "User password updated successfully",
                     content = @Content(mediaType = "text/plain",
                             schema = @Schema(type = "string"),
@@ -151,7 +151,7 @@ public class UserController {
     @PutMapping(path = "/update")
     @Operation(summary = "Update user information (first, last name, email, phone no) after confirming provided password")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "500", ref = "internalServerErrorAPI"),
+            @ApiResponse(responseCode = "500", ref = "internalServerErrorResponseAPI"),
             @ApiResponse(responseCode = "200", description = "User information updated successfully",
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = UserResponse.class),
@@ -189,7 +189,7 @@ public class UserController {
     @GetMapping(path = "/{id}")
     @Operation(summary = "Find user by ID", description = "Find a user with the given ID")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "500", ref = "internalServerErrorAPI"),
+            @ApiResponse(responseCode = "500", ref = "internalServerErrorResponseAPI"),
             @ApiResponse(responseCode = "200", description = "User found successfully",
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = UserResponse.class),
@@ -224,7 +224,7 @@ public class UserController {
     @GetMapping(path = "/email/{email}")
     @Operation(summary = "Find user by email", description = "Find a user with the given email")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "500", ref = "internalServerErrorAPI"),
+            @ApiResponse(responseCode = "500", ref = "internalServerErrorResponseAPI"),
             @ApiResponse(responseCode = "200", description = "User found successfully",
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = UserResponse.class),
@@ -253,7 +253,7 @@ public class UserController {
             @ApiResponse(responseCode = "204", description = "User deleted successfully"),
             @ApiResponse(responseCode = "404", description = "User not found"),
             @ApiResponse(responseCode = "409", description = "User cannot be deleted because they have associated data"),
-            @ApiResponse(responseCode = "500", ref = "internalServerErrorAPI"),}
+            @ApiResponse(responseCode = "500", ref = "internalServerErrorResponseAPI"),}
     )
     ResponseEntity<HttpStatus> delete(
             @Parameter(description = "ID of the user to be deleted")
@@ -263,6 +263,4 @@ public class UserController {
                 .status(HttpStatus.NO_CONTENT)
                 .build();
     }
-
-
 }
